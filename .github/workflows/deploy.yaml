@@ -10,10 +10,7 @@ permissions:
   contents: read
 
 jobs:
-    
-
   terraform:
-    environment: Production    
     runs-on: ubuntu-latest
     env:
       ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
