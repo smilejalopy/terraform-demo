@@ -24,6 +24,7 @@ provider "azurerm" {
 }
 
 
+
 provider "azurerm" {
   skip_provider_registration = true
   alias           = "connectivity"
