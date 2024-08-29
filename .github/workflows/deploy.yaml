@@ -22,11 +22,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Set up Terraform
-      uses: hashicorp/setup-terraform@v1
-      with:
-        terraform_version: 1.0.0
-
     - name: 'Login via Azure CLI'
       uses: azure/login@v1
       with:
@@ -35,6 +30,11 @@ jobs:
         subscription-id: ${{ secrets.SUBSCRIPTION_ID }}
         addSpnToEnvironment: true
 
+    - name: Set up Terraform
+      uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 1.0.0
+    
     - name: 'List all Resource Groups'
       run: az group list --output table
 
