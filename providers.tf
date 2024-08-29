@@ -1,3 +1,5 @@
+variable "subscription_id" {}
+
 terraform {
   required_providers {
     azurerm = {
@@ -27,3 +29,10 @@ provider "azurerm" {
   alias           = "identity"
   features {}
 }
+
+provider "azurerm" {
+  features {}
+  use_oidc        = true # Use OIDC to authenticate to Azure
+  subscription_id = var.subscription_id
+}
+
