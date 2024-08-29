@@ -24,23 +24,23 @@ provider "azurerm" {
 }
 
 
-# provider "azurerm" {
-#   skip_provider_registration = true
-#   alias           = "connectivity"
-#   features {}
-# }
+provider "azurerm" {
+  skip_provider_registration = true
+  alias           = "connectivity"
+  features {}
+}
 
-# provider "azurerm" {
-#   skip_provider_registration = true
-#   alias           = "management"
-#   features {}
-# }
+provider "azurerm" {
+  skip_provider_registration = true
+  alias           = "management"
+  features {}
+}
 
-# provider "azurerm" {
-#   skip_provider_registration = true
-#   alias           = "identity"
-#   features {}
-# }
+provider "azurerm" {
+  skip_provider_registration = true
+  alias           = "identity"
+  features {}
+}
 
 
 
