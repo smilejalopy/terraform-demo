@@ -1,5 +1,3 @@
-variable "subscription_id" {}
-
 terraform {
   required_providers {
     azurerm = {
