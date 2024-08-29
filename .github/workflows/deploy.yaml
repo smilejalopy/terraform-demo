@@ -40,17 +40,7 @@ jobs:
 
     - name: Terraform Init
       run: terraform init
-      env:
-        ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-        ARM_SUBSCRIPTION_ID: ${{ secrets.SUBSCRIPTION_ID }}
-        ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
-        ARM_USE_OIDC: true
 
-    # - name: Terraform Apply
-    #   run: terraform apply -auto-approve
-
-    #   - task: AzureCLI@2displayName: "Terraform"inputs:azureSubscription:  shared-${{ parameters.environment }}-001scriptType: bashaddSpnToEnvironment: truescriptLocation: inlineScriptinlineScript: |
-    #   export ARM_CLIENT_ID=$servicePrincipalId
-    #   export ARM_CLIENT_SECRET=$servicePrincipalKey
-    #   export ARM_TENANT_ID=$tenantIdterraform init 
+    - name: Terraform Apply
+      run: terraform apply -auto-approve
     
