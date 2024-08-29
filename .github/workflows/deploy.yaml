@@ -39,9 +39,8 @@ jobs:
       run: az group list --output table
 
 
-    # - name: Terraform Init
-    #   run: terraform init
-    #   run: terraform init
+    - name: Terraform Init
+      run: terraform init
     #   env:
     #     ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
     #     ARM_SUBSCRIPTION_ID: ${{ secrets.SUBSCRIPTION_ID }}
