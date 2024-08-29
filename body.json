@@ -1,0 +1,9 @@
+{
+    "name": "terra-workshop-federated-identity",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "subject": "repo:waiholiu/terraform-workshop:ref:refs/heads/main",
+    "description": "GitHub",
+    "audiences": [
+        "api://AzureADTokenExchange"
+    ]
+}

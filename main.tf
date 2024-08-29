@@ -10,22 +10,22 @@ data "azurerm_client_config" "connectivity" {
 data "azurerm_client_config" "identity" {
   provider = azurerm.identity
 }
-module "enterprise_scale" {
-  source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "4.2.0"
+# module "enterprise_scale" {
+#   source  = "Azure/caf-enterprise-scale/azurerm"
+#   version = "4.2.0"
 
-  default_location = var.default_location
+#   default_location = var.default_location
 
-  providers = {
-    azurerm              = azurerm
-    azurerm.connectivity = azurerm.connectivity
-    azurerm.management   = azurerm.management
-    azurerm.identity     = azurerm.identity
-  }
-  root_parent_id = data.azurerm_client_config.core.tenant_id
-  root_id        = var.root_id
-  root_name      = var.root_name
-}
+#   providers = {
+#     azurerm              = azurerm
+#     azurerm.connectivity = azurerm.connectivity
+#     azurerm.management   = azurerm.management
+#     azurerm.identity     = azurerm.identity
+#   }
+#   root_parent_id = data.azurerm_client_config.core.tenant_id
+#   root_id        = var.root_id
+#   root_name      = var.root_name
+# }
 resource "azurerm_resource_group" "rg" {
     name =   "${var.prefix}-REB-RG"
     location = var.resource_group_location
