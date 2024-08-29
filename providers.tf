@@ -42,6 +42,3 @@ provider "azurerm" {
 
 
 
-terraform {
- 
-}
