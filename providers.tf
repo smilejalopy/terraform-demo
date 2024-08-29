@@ -23,6 +23,8 @@ provider "azurerm" {
   use_oidc = true
 }
 
+data "azurerm_client_config" "management" {}
+
 # provider "azurerm" {
 #   skip_provider_registration = true
 #   alias           = "connectivity"
