@@ -1,6 +1,6 @@
 # New resources for App Service
 resource "azurerm_app_service_plan" "asp" {
-  name                = "${var.prefix}-asp"
+  name                = "${var.prefix}-wai-asp"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   sku {
@@ -10,7 +10,7 @@ resource "azurerm_app_service_plan" "asp" {
 }
 
 resource "azurerm_app_service" "app" {
-  name                = "${var.prefix}-app"
+  name                = "${var.prefix}-wai-app"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   app_service_plan_id = azurerm_app_service_plan.asp.id
@@ -22,5 +22,5 @@ resource "azurerm_app_service" "app" {
   site_config {
     always_on = true
   }
-  
+
 }
