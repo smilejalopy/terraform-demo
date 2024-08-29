@@ -1,13 +1,13 @@
-# New resources for App Service
-resource "azurerm_app_service_plan" "asp" {
+
+
+resource "azurerm_service_plan" "example" {
   name                = "${var.prefix}-wai-asp"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
-  sku {
-    tier = "Free"
-    size = "F1"
-  }
+  os_type             = "Linux"
+  sku_name            = "F1"
 }
+
 
 resource "azurerm_app_service" "app" {
   name                = "${var.prefix}-wai-app"
