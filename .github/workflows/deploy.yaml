@@ -32,9 +32,16 @@ jobs:
     - name: Terraform Init
       run: terraform init
       env:
-        TF_VAR_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-        TF_VAR_SUBSCRIPTION_ID: ${{ secrets.SUBSCRIPTION_ID }}
-        TF_VAR_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+        ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+        ARM_SUBSCRIPTION_ID: ${{ secrets.SUBSCRIPTION_ID }}
+        ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+        ARM_USE_OIDC: "true"
+
 
     - name: Terraform Apply
       run: terraform apply -auto-approve
+      env:
+        ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+        ARM_SUBSCRIPTION_ID: ${{ secrets.SUBSCRIPTION_ID }}
+        ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+        ARM_USE_OIDC: "true"
