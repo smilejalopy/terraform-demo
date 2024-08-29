@@ -35,12 +35,9 @@ jobs:
         subscription-id: ${{ secrets.SUBSCRIPTION_ID }}
         addSpnToEnvironment: true
 
-    - name: List all Resource Groups
-    run: az group list --output table
-    env:
-        ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-        ARM_SUBSCRIPTION_ID: ${{ secrets.SUBSCRIPTION_ID }}
-        ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+    - name: 'List all Resource Groups'
+      run: az group list --output table
+
 
     # - name: Terraform Init
     #   run: terraform init
