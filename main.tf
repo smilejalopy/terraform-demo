@@ -69,6 +69,93 @@ resource "azurerm_network_security_rule" "nsr1" {
     source_address_prefix = "10.0.0.0/26"
     source_port_range = "*"
     destination_address_prefix = "*"
-    destination_port_range = "*"  
+    destination_port_range = "443"  
     depends_on = [ azurerm_network_security_group.nsg1 ]
+}
+resource "random_password" "password" {
+  length      = 20
+  min_lower   = 1
+  min_upper   = 1
+  min_numeric = 1
+  min_special = 1
+  special     = true
+}
+resource "azurerm_network_security_rule" "nsr2" {
+    name = "allow_http_inbound"
+    resource_group_name = azurerm_resource_group.rg.name
+    priority = "1002"
+    network_security_group_name = azurerm_network_security_group.nsg1.name
+    protocol = "Tcp"
+    access = "Allow"
+    direction = "Inbound"
+    source_address_prefix = "*"
+    source_port_range = "*"
+    destination_address_prefix = "*"
+    destination_port_range = "80"  
+    depends_on = [ azurerm_network_security_group.nsg1 ]
+}
+resource "azurerm_network_security_rule" "nsr3" {
+    name = "allow_rdp_inbound"
+    resource_group_name = azurerm_resource_group.rg.name
+    priority = "1003"
+    network_security_group_name = azurerm_network_security_group.nsg1.name
+    protocol = "*"
+    access = "Allow"
+    direction = "Inbound"
+    source_address_prefix = "*"
+    source_port_range = "*"
+    destination_address_prefix = "*"
+    destination_port_range = "3389"  
+    depends_on = [ azurerm_network_security_group.nsg1 ]
+}
+resource "azurerm_public_ip" "pip1" {
+  name = "pip1"
+  resource_group_name = azurerm_resource_group.rg.name
+  location = azurerm_resource_group.rg.location
+  allocation_method = "Static"
+}
+resource "azurerm_network_interface" "nic1" {
+  name = "nic1"
+  resource_group_name = azurerm_resource_group.rg.name
+  location = azurerm_resource_group.rg.location
+  ip_configuration {
+    name = "nic-ip1"
+    private_ip_address_allocation = "Dynamic"
+    subnet_id = azurerm_subnet.snet1.id
+    public_ip_address_id = azurerm_public_ip.pip1.id
+  }
+}
+
+resource "azurerm_windows_virtual_machine" "vm1" {
+  name = "vm1"  
+  resource_group_name = azurerm_resource_group.rg.name
+  location = azurerm_resource_group.rg.location
+  admin_username = "AJAdmin"
+  admin_password = random_password.password.result
+  size = "Standard_DS1_v2"
+  network_interface_ids = [azurerm_network_interface.nic1.id]
+  os_disk {
+    name = "osdiskvm1"
+    storage_account_type = "Premium_LRS"
+    caching = "ReadWrite"
+  }
+  source_image_reference {
+    publisher = "MicrosoftWindowsServer"
+    offer     = "WindowsServer"
+    sku       = "2022-datacenter-azure-edition"
+    version   = "latest"
+  }
+}
+resource "azurerm_virtual_machine_extension" "vme1" {
+  name = "vme1"
+  virtual_machine_id = azurerm_windows_virtual_machine.vm1.id
+  publisher                  = "Microsoft.Compute"
+  type                       = "CustomScriptExtension"
+  type_handler_version       = "1.8"
+
+  settings = <<SETTINGS
+  {
+  "commandToExecute": "powershell -ExecutionPolicy Unrestricted Install-WindowsFeature -Name Web-Server -IncludeAllSubFeature -IncludeManagementTools"
+  }
+  SETTINGS
 }
