@@ -9,6 +9,7 @@ terraform {
 provider "azurerm" {
   skip_provider_registration = true
   features {}
+  use_oidc = true
 }
 provider "azurerm" {
   skip_provider_registration = true
