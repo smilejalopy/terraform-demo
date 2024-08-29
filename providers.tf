@@ -9,6 +9,8 @@ terraform {
 provider "azurerm" {
   skip_provider_registration = true
   features {}
+  use_oidc  = true # Use OIDC to authenticate to Azure
+  subscription_id = var.subscription_id
 }
 provider "azurerm" {
   skip_provider_registration = true
@@ -28,9 +30,4 @@ provider "azurerm" {
   features {}
 }
 
-provider "azurerm" {
-  features {}
-  use_oidc        = true # Use OIDC to authenticate to Azure
-  subscription_id = var.subscription_id
-}
 
