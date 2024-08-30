@@ -34,7 +34,8 @@ resource "azurerm_resource_group" "rg" {
       "key2" = "value2"
       "key3" = "value3"
       "key4" = "NewTag4"      
-      "key5" = "Justright"      
+      "key5" = "Justright"  
+      "key6" = "key6"    
     }
 }
 
