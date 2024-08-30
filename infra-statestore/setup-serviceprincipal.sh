@@ -23,7 +23,6 @@ az role assignment create --assignee $APP_ID --role 'User Access Administrator' 
 
 
 # to chuck into the github secrets
-
 # AZURE_SUBSCRIPTION_ID
 echo $SUBSCRIPTION_ID
 # AZURE_TENANT_ID
