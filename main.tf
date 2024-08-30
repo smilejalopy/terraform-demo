@@ -29,6 +29,9 @@ data "azurerm_client_config" "identity" {
 resource "azurerm_resource_group" "rg" {
     name =   "${var.prefix}-REB-RG"
     location = var.resource_group_location
+    tags = {
+        Tag1 = "test"
+    }
 }
 
 resource "azurerm_virtual_network" "vnet1" {
