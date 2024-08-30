@@ -3,7 +3,7 @@ name: Deploy Terraform to Azure
 on:
   pull_request:
     branches:
-      - actions  # Change this to the branch used for pull requests
+      - actions
 
 permissions:
   id-token: write
