@@ -31,6 +31,7 @@ resource "azurerm_resource_group" "rg" {
     location = var.resource_group_location
     tags = {
       "key1" = "value1"
+      "key2" = "value2"
     }
 }
 
