@@ -1,15 +1,15 @@
-data "azurerm_client_config" "core" {
-  provider = azurerm
-}
-data "azurerm_client_config" "management" {
-  provider = azurerm.management
-}
-data "azurerm_client_config" "connectivity" {
-  provider = azurerm.connectivity
-}
-data "azurerm_client_config" "identity" {
-  provider = azurerm.identity
-}
+# data "azurerm_client_config" "core" {
+#   provider = azurerm
+# }
+# data "azurerm_client_config" "management" {
+#   provider = azurerm.management
+# }
+# data "azurerm_client_config" "connectivity" {
+#   provider = azurerm.connectivity
+# }
+# data "azurerm_client_config" "identity" {
+#   provider = azurerm.identity
+# }
 # module "enterprise_scale" {
 #   source  = "Azure/caf-enterprise-scale/azurerm"
 #   version = "4.2.0"
