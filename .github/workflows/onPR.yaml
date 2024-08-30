@@ -8,6 +8,7 @@ on:
 permissions:
   id-token: write
   contents: read
+  pull-requests: write
 
 jobs:
   terraform:
@@ -33,8 +34,18 @@ jobs:
     - name: Set up Terraform
       uses: hashicorp/setup-terraform@v3
 
-    - name: Terraform Init
-      run: terraform init
-
     - name: Terraform Plan
+      id: plan
       run: terraform plan
+
+    - name: Post Plan to PR
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const planOutput = `\`\`\`terraform\n${{ steps.plan.outputs.stdout }}\n\`\`\``;
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: `### Terraform Plan Result\n${planOutput}`
+          });
