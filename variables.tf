@@ -19,6 +19,6 @@ variable "resource_group_location" {
 
 variable "prefix" {
   type = string
-  default = "tfw"
+  default = "tfw2"
   description = "Prefix for TF Workshop"
 }

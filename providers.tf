@@ -12,7 +12,7 @@ terraform {
     resource_group_name = "Terraform"
     storage_account_name = "anuterraformstatew"
     container_name = "tfworkshop"
-    key = "tfworkshop.tfstate2"
+    key = "tfworkshop.tfstate3"
     use_azuread_auth = true
     use_oidc = true
   }
