@@ -9,10 +9,10 @@ terraform {
   }
 
   backend "azurerm" {
-    resource_group_name = "tfstate-rg"
-    storage_account_name = "terraformwsstatewai"
+    resource_group_name = "Terraform"
+    storage_account_name = "anuterraformstatew"
     container_name = "tfworkshop"
-    key = "tfworkshop.tfstate"
+    key = "tfworkshop.tfstate2"
     use_azuread_auth = true
     use_oidc = true
   }

@@ -6,6 +6,9 @@ STORAGE_ACCOUNT_NAME="terraformwsstatewai"
 CONTAINER_NAME="tfworkshop"
 LOCATION="eastus"  # You can change this to your preferred Azure region
 
+
+
+
 # Create Resource Group
 az group create --name $RESOURCE_GROUP_NAME --location $LOCATION
 

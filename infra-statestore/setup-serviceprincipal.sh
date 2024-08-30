@@ -14,9 +14,7 @@ $OBJECT_ID = az ad app show --id $APP_ID --query id -otsv
 
 
 # create a federated identity to allow access 
-az rest --method POST --uri "https://graph.microsoft.com/beta/applications/$OBJECT_ID/federatedIdentityCredentials" 
---body '{\"name\":\"terraform-demo-actions-federated-identity\",\"issuer\":\"https://token.actions.githubusercontent.com\",\"subject\":\"repo:waiholiu/terraform-demo:ref:refs/heads/actions\",\"description\":\"GitHub\",\"audiences\":[\"api://AzureADTokenExchange\"]}' 
---headers "Content-Type=application/json"
+az rest --method POST --uri "https://graph.microsoft.com/beta/applications/$OBJECT_ID/federatedIdentityCredentials" --body '{\"name\":\"terraform-demo-actions-federated-identity\",\"issuer\":\"https://token.actions.githubusercontent.com\",\"subject\":\"repo:smilejalopy/terraform-demo:ref:refs/heads/actions\",\"description\":\"GitHub\",\"audiences\":[\"api://AzureADTokenExchange\"]}' --headers "Content-Type=application/json"
 
 
 # give the service principal access to the subscription
